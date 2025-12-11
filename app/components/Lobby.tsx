@@ -13,6 +13,20 @@ export default function Lobby() {
 
   const isLeader = currentPlayer.id === room.leaderId;
 
+    const updateImpostorCount = async (count: number) => {
+    if (!isLeader) return;
+    await updateDoc(doc(db, 'rooms', room.id), {
+      'settings.impostorCount': count
+    });
+  };
+
+  const updateCategory = async (category: string) => {
+    if (!isLeader) return;
+    await updateDoc(doc(db, 'rooms', room.id), {
+      'settings.category': category
+    });
+  };
+
   const startGame = async () => {
     if (!isLeader || room.players.length < 3) {
       alert('Se necesitan al menos 3 jugadores');
@@ -88,15 +102,33 @@ export default function Lobby() {
                     <span className="font-semibold">Configuración</span>
                   </div>
                   <div className="grid grid-cols-2 gap-3 text-sm">
-                    <div className="text-gray-300">
-                      <div className="font-semibold">Impostores:</div>
-                      <div>{room.settings.impostorCount}</div>
-                    </div>
-                    <div className="text-gray-300">
-                      <div className="font-semibold">Categoría:</div>
-                      <div>{room.settings.category}</div>
-                    </div>
-                    <div className="text-gray-300">
+                <div className="text-gray-300">
+                  <div className="font-semibold">Impostores:</div>
+                  <select
+                    value={room.settings.impostorCount}
+                    onChange={(e) => updateImpostorCount(Number(e.target.value))}
+                    className="bg-white/10 text-white rounded px-2 py-1 cursor-pointer"
+                  >
+                    <option value={1}>1</option>
+                    <option value={2}>2</option>
+                    <option value={3}>3</option>
+                  </select>
+                </div>
+                                <div className="text-gray-300">
+                  <div className="font-semibold">Categoría:</div>
+                  <select
+                    value={room.settings.category}
+                    onChange={(e) => updateCategory(e.target.value)}
+                    className="bg-white/10 text-white rounded px-2 py-1 cursor-pointer"
+                  >
+                    <option value="Animales">Animales</option>
+                    <option value="Frutas">Frutas</option>
+                    <option value="Países">Países</option>
+                    <option value="Objetos">Objetos</option>
+                    <option value="Profesiones">Profesiones</option>
+                  </select>
+                </div>
+                <div className="text-gray-300">
                       <div className="font-semibold">Rondas:</div>
                       <div>{room.settings.roundCount}</div>
                     </div>
