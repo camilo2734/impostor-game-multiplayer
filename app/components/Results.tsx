@@ -10,7 +10,7 @@ import { Trophy, Target } from 'lucide-react';
 export default function Results() {
   const { room, currentPlayer } = useGameStore();
 
-  const votingResults = useMemo(() => {
+  const votingResults = useMemo(() => {: { mostVoted: string; votes: { [key: string]: number } } | null
     if (!room) return { mostVoted: null, votes: {} };
 
     const votes: { [key: string]: number } = {};
