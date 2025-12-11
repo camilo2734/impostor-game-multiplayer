@@ -31,6 +31,16 @@ export default function FinalResults() {
         </div>
       </div>
     </div>
+
+      <div className="mt-8 flex justify-center">
+        <button
+          onClick={() => window.location.href = '/'}
+          className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold py-4 px-8 rounded-lg text-xl transition-all transform hover:scale-105 shadow-lg"
+        >
+          🎮 Jugar de Nuevo
+        </button>
+      </div>
   );
 }
+
 
