@@ -35,7 +35,7 @@ export default function CreateRoom({ onBack }: { onBack: () => void }) {
           category: 'Animales',
           customCategories: [],
           roundCount: 3,
-          clueTime: 30
+          clueTime: 90
         },
         state: 'lobby' as 'lobby',
         currentRound: 0,
