@@ -10,13 +10,7 @@ export default function Voting() {
   const { room, currentPlayer } = useGameStore();
   const [selectedPlayer, setSelectedPlayer] = useState('');
     const [timeLeft, setTimeLeft] = useState(60);
-
-  if (!room || !currentPlayer) return null;
-
-  const player = room.players.find(p => p.id === currentPlayer.id);
-  const hasVoted = player?.votedFor && player.votedFor.length > 0;
-
-    useEffect(() => {
+      useEffect(() => {
     const timer = setInterval(() => {
       setTimeLeft(prev => {
         if (prev <= 1) {
@@ -29,6 +23,13 @@ export default function Voting() {
 
     return () => clearInterval(timer);
   }, []);
+
+
+  if (!room || !currentPlayer) return null;
+
+  const player = room.players.find(p => p.id === currentPlayer.id);
+  const hasVoted = player?.votedFor && player.votedFor.length > 0;
+
 
   const handleVote = async () => {
     if (!selectedPlayer) return;
