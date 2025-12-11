@@ -2,11 +2,17 @@
 
 import { useGameStore } from '@/app/store/gameStore';
 import { Trophy, Medal } from 'lucide-react';
+import { doc, updateDoc } from 'firebase/firestore';
+import { db } from '@/app/lib/firebase';
+
+const WORDS = ['perro', 'gato', 'pizza', 'playa', 'música', 'libro', 'café', 'montaña', 'teléfono', 'computadora'];
 
 export default function FinalResults() {
   const { room } = useGameStore();
 
   if (!room) return null;
+
+  
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-purple-900 to-indigo-900 text-white p-8">
@@ -33,7 +39,7 @@ export default function FinalResults() {
 
       <div className="mt-8 flex justify-center">
         <button
-          onClick={() => window.location.href = '/'}
+          onClick={handlePlayAgain}
           className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold py-4 px-8 rounded-lg text-xl transition-all transform hover:scale-105 shadow-lg"
         >
           🎮 Jugar de Nuevo
