@@ -11,8 +11,8 @@ export default function Results() {
   const { room, currentPlayer } = useGameStore();
 
   const votingResults: { mostVoted: string; votes: { [key: string]: number } } | null = useMemo(() => {    if (!room) return { mostVoted: null, votes: {} };
-
-    const votes: { [key: string]: number } = {};
+    if (!room) return null;
+                                                                                                       const votes: { [key: string]: number } = {};
     room.players.forEach(p => {
       if (p.votedFor) {
         votes[p.votedFor] = (votes[p.votedFor] || 0) + 1;
