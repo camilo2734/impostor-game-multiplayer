@@ -102,31 +102,41 @@ export default function Lobby() {
                     <span className="font-semibold">Configuración</span>
                   </div>
                   <div className="grid grid-cols-2 gap-3 text-sm">
-                <div className="text-gray-300">
-                  <div className="font-semibold">Impostores:</div>
-                  <select
-                    value={room.settings.impostorCount}
-                    onChange={(e) => updateImpostorCount(Number(e.target.value))}
-                    className="bg-white/10 text-white rounded px-2 py-1 cursor-pointer"
-                  >
-                    <option value={1}>1</option>
-                    <option value={2}>2</option>
-                    <option value={3}>3</option>
-                  </select>
-                </div>
                                 <div className="text-gray-300">
-                  <div className="font-semibold">Categoría:</div>
-                  <select
-                    value={room.settings.category}
-                    onChange={(e) => updateCategory(e.target.value)}
-                    className="bg-white/10 text-white rounded px-2 py-1 cursor-pointer"
-                  >
-                    <option value="Animales">Animales</option>
-                    <option value="Frutas">Frutas</option>
-                    <option value="Países">Países</option>
-                    <option value="Objetos">Objetos</option>
-                    <option value="Profesiones">Profesiones</option>
-                  </select>
+                  <div className="font-semibold mb-2">Impostores:</div>
+                  <div className="flex gap-2">
+                    {[1, 2, 3].map((count) => (
+                      <button
+                        key={count}
+                        onClick={() => updateImpostorCount(count)}
+                        className={`px-4 py-2 rounded-lg font-semibold transition-all ${
+                          room.settings.impostorCount === count
+                            ? 'bg-blue-600 text-white'
+                            : 'bg-white/20 text-gray-300 hover:bg-white/30'
+                        }`}
+                      >
+                        {count}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+                <div className="text-gray-300">
+                  <div className="font-semibold mb-2">Categoría:</div>
+                  <div className="flex flex-wrap gap-2">
+                    {['Animales', 'Frutas', 'Países', 'Objetos', 'Profesiones'].map((cat) => (
+                      <button
+                        key={cat}
+                        onClick={() => updateCategory(cat)}
+                        className={`px-3 py-2 rounded-lg font-semibold transition-all text-sm ${
+                          room.settings.category === cat
+                            ? 'bg-blue-600 text-white'
+                            : 'bg-white/20 text-gray-300 hover:bg-white/30'
+                        }`}
+                      >
+                        {cat}
+                      </button>
+                    ))}
+                  </div>
                 </div>
                 <div className="text-gray-300">
                       <div className="font-semibold">Rondas:</div>
