@@ -52,6 +52,8 @@ export default function Lobby() {
       currentWord: word,
       players: updatedPlayers,
       roundStartTime: Date.now()
+            turnOrder: room.players.map(p => p.id).sort(() => Math.random() - 0.5),
+      currentTurnIndex: 0,
     });
   };
 
