@@ -73,11 +73,36 @@ export default function GameRound() {
             <h1 className="text-3xl font-bold text-white mb-2">
               Ronda {room.currentRound} de {room.settings.roundCount}
             </h1>
-            <div className="flex items-center justify-center gap-2 text-yellow-400 text-2xl font-bold">
-              <Clock size={28} />
-              <span>{timeLeft}s</span>
-            </div>
-          </div>
+            <div className="flex items-center justify-center gap-4">
+              {/* Circular Progress Timer */}
+              <div className="relative w-24 h-24">
+                <svg className="transform -rotate-90 w-24 h-24">
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="40"
+                    stroke="rgba(255,255,255,0.2)"
+                    strokeWidth="8"
+                    fill="none"
+                  />
+                  <circle
+                    cx="48"
+                    cy="48"
+                    r="40"
+                    stroke="#fbbf24"
+                    strokeWidth="8"
+                    fill="none"
+                    strokeDasharray={`${2 * Math.PI * 40}`}
+                    strokeDashoffset={`${2 * Math.PI * 40 * (1 - timeLeft / 90)}`}
+                    className="transition-all duration-1000"
+                  />
+                </svg>
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <span className="text-3xl font-bold text-yellow-400">{timeLeft}s</span>
+                </div>
+              </div>
+              <Clock className="text-yellow-400" size={32} />
+            </div>          </div>
 
           <div className="bg-white/20 rounded-xl p-6 mb-6">
             <div className="flex items-center justify-between mb-4">
