@@ -30,7 +30,6 @@ export default function FinalResults() {
           ))}
         </div>
       </div>
-    </div>
 
       <div className="mt-8 flex justify-center">
         <button
@@ -40,7 +39,6 @@ export default function FinalResults() {
           🎮 Jugar de Nuevo
         </button>
       </div>
+    </div>
   );
 }
-
-
