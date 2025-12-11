@@ -90,7 +90,7 @@ export default function GameRound() {
               </button>
             </div>
             
-            <div className="bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg p-6 text-center">
+            <div className="bg-gradient-to-r from-green-600 to-blue-600 rounded-lg p-6 text-center">
               {showWord ? (
                 <div className="text-4xl font-bold text-white">
                   {player?.isImpostor ? '🎭 ERES EL IMPOSTOR' : room.currentWord}
@@ -115,13 +115,13 @@ export default function GameRound() {
             </div>
           )}
 
-          {player?.isImpostor && playersWithClues.length > 0 && (
-            <div className="bg-purple-600/20 border border-purple-600 rounded-lg p-4 mb-6">
-              <h3 className="text-white font-bold mb-3">🕵️ Pistas reveladas:</h3>
+          {playersWithClues.length > 0 && (
+            <div className="bg-green-600/20 border border-green-600 rounded-lg p-4 mb-6">
+              <h3 className="text-white font-bold mb-3">📝 Pistas enviadas hasta ahora ({playersWithClues.length}/{room.players.length}):</h3>
               <div className="space-y-2">
                 {playersWithClues.map(p => (
                   <div key={p.id} className="bg-white/10 rounded-lg p-3">
-                    <div className="text-purple-300 text-sm font-semibold">{p.name}</div>
+                    <div className="text-green-300 text-sm font-semibold">{p.name}</div>
                     <div className="text-white">{p.clue}</div>
                   </div>
                 ))}
