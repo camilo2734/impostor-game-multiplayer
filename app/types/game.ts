@@ -29,4 +29,6 @@ export interface Room {
   currentWord?: string;
   createdAt: number;
   roundStartTime?: number;
+    turnOrder?: string[];  // Array de IDs en orden aleatorio
+  currentTurnIndex?: number;  // Índice del jugador actual
 }
