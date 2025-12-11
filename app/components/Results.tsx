@@ -21,8 +21,7 @@ export default function Results() {
 
     const mostVoted = Object.keys(votes).reduce((a, b) => (votes[a] > votes[b] ? a : b), '');
 
-    return votingResults({ mostVoted, votes });
-  }, [room]);
+    return { mostVoted, votes };  }, [room]);
 
   if (!room || !votingResults) return null;
 
