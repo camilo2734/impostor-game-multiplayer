@@ -33,4 +33,3 @@ export default function FinalResults() {
     </div>
   );
 }
-export default FinalResults;
