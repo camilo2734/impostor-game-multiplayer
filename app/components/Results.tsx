@@ -26,7 +26,6 @@ export default function Results() {
   if (!room || !votingResults) return null;
 
   const impostor = room.players.find(p => p.isImpostor);
-    const impostor = room.players.find(p => p.isImpostor);
   const mostVotedPlayerId = votingResults.mostVoted;
   const mostVotedPlayer = room.players.find(p => p.id === mostVotedPlayerId);
   const correctVote = mostVotedPlayerId === impostor?.id;
@@ -37,7 +36,7 @@ export default function Results() {
       
       <div className="bg-white/10 backdrop-blur-md rounded-lg p-6 w-full max-w-md mb-6">
         <h2 className="text-2xl font-bold mb-4">El más votado:</h2>
-        <p className="text-3xl text-yellow-400">{votingResultsmostVotedPlayer?.name}</p>
+        <p className="text-3xl text-yellow-400">{mostVotedPlayer?.name}</p>
       </div>
 
       {correctVote ? (
