@@ -108,7 +108,7 @@ export default function GameRound() {
               <textarea
                 value={clue}
                 onChange={(e) => setClue(e.target.value)}
-                disabled={hasSubmitted}
+                disabled={hasSubmitted!!hasSubmitted}
                 placeholder="Escribe una pista sobre tu palabra..."
                 className="w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 disabled:opacity-50 disabled:cursor-not-allowed resize-none"
                 rows={4}
