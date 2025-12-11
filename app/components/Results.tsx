@@ -40,13 +40,13 @@ export default function Results() {
       </div>
 
       {correctVote ? (
-        <div className="bg-green-500/20 backdrop-blur-md rounded-lg p-6 w-full max-w-md mb-6">
+        <div className="bg-green-500/20 backdrop-blur-md rounded-lg p-6 w-full max-w-md mb-6" animate-bounce"
           <Target className="w-12 h-12 mb-2 text-green-400 mx-auto" />
           <p className="text-2xl font-bold text-center">¡Votaron correctamente!</p>
           <p className="text-center mt-2">El impostor era {impostor?.name}</p>
         </div>
       ) : (
-        <div className="bg-red-500/20 backdrop-blur-md rounded-lg p-6 w-full max-w-md mb-6">
+        <div className="bg-red-500/20 backdrop-blur-md rounded-lg p-6 w-full max-w-md mb-6" animate-pulse"
           <Target className="w-12 h-12 mb-2 text-red-400 mx-auto" />
           <p className="text-2xl font-bold text-center">¡Votaron incorrectamente!</p>
           <p className="text-center mt-2">El impostor era {impostor?.name}</p>
