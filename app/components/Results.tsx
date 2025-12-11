@@ -26,8 +26,10 @@ export default function Results() {
   if (!room || !votingResults) return null;
 
   const impostor = room.players.find(p => p.isImpostor);
-  const correctVote = votingResults.mostVoted === impostor?.name;
-
+    const impostor = room.players.find(p => p.isImpostor);
+  const mostVotedPlayerId = votingResults.mostVoted;
+  const mostVotedPlayer = room.players.find(p => p.id === mostVotedPlayerId);
+  const correctVote = mostVotedPlayerId === impostor?.id;
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-purple-900 to-indigo-900 text-white p-8">
       <Trophy className="w-24 h-24 mb-8 text-yellow-400" />
@@ -35,7 +37,7 @@ export default function Results() {
       
       <div className="bg-white/10 backdrop-blur-md rounded-lg p-6 w-full max-w-md mb-6">
         <h2 className="text-2xl font-bold mb-4">El más votado:</h2>
-        <p className="text-3xl text-yellow-400">{votingResults.mostVoted}</p>
+        <p className="text-3xl text-yellow-400">{votingResultsmostVotedPlayer?.name}</p>
       </div>
 
       {correctVote ? (
