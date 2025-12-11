@@ -48,7 +48,7 @@ export default function Voting() {
     
     if (allVoted) {
       await updateDoc(doc(db, 'rooms', room.id), {
-        state: 'results'
+        state: 'votingResults'
       });
     }
   };

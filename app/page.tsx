@@ -14,6 +14,7 @@ import GameRound from '@/app/components/GameRound';
 import ShowClues from '@/app/components/ShowClues';
 import Voting from '@/app/components/Voting';
 import Results from '@/app/components/Results';
+import VotingResults from '@/app/components/VotingResults';
 import FinalResults from '@/app/components/FinalResults';
 
 export default function Home() {
@@ -42,6 +43,8 @@ export default function Home() {
         return <ShowClues />;
       case 'vote':
         return <Voting />;
+              case 'votingResults':
+        return <VotingResults />;
       case 'results':
         return <Results />;
       case 'finish':
