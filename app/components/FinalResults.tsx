@@ -12,6 +12,28 @@ export default function FinalResults() {
 
   if (!room) return null;
 
+    const handlePlayAgain = async () => {
+    if (!room?.id) return;
+    
+    try {
+      await updateDoc(doc(db, 'rooms', room.id), {
+        gameState: 'lobby',
+        players: Object.fromEntries(
+          Object.entries(room.players).map(([id, player]) => [
+            id,
+            { ...player, ready: false, word: '', isImpostor: false, eliminated: false }
+          ])
+        ),
+        votes: {},
+        currentWord: '',
+        currentRound: 0,
+        roundStartTime: null
+      });
+    } catch (error) {
+      console.error('Error restarting game:', error);
+    }
+  };
+
   
 
   return (
