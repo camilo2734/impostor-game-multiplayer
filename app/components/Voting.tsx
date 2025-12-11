@@ -1,19 +1,34 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useGameStore } from '@/app/store/gameStore';
 import { doc, updateDoc } from 'firebase/firestore';
 import { db } from '@/app/lib/firebase';
-import { UserX } from 'lucide-react';
+import { UserX, Clock } from 'lucide-react';
 
 export default function Voting() {
   const { room, currentPlayer } = useGameStore();
   const [selectedPlayer, setSelectedPlayer] = useState('');
+    const [timeLeft, setTimeLeft] = useState(60);
 
   if (!room || !currentPlayer) return null;
 
   const player = room.players.find(p => p.id === currentPlayer.id);
   const hasVoted = player?.votedFor && player.votedFor.length > 0;
+
+    useEffect(() => {
+    const timer = setInterval(() => {
+      setTimeLeft(prev => {
+        if (prev <= 1) {
+          clearInterval(timer);
+          return 0;
+        }
+        return prev - 1;
+      });
+    }, 1000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   const handleVote = async () => {
     if (!selectedPlayer) return;
@@ -46,6 +61,10 @@ export default function Voting() {
               🗳️ Votación
             </h1>
             <p className="text-gray-300">¿Quién crees que es el impostor?</p>
+                        <div className="flex items-center justify-center gap-2 text-yellow-400 text-2xl font-bold mt-4">
+              <Clock size={28} />
+              <span>{timeLeft}s</span>
+            </div>
           </div>
 
           {!hasVoted ? (
