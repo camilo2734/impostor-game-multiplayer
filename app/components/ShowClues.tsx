@@ -1,5 +1,4 @@
 'use client';
-
 import { useEffect } from 'react';
 import { useGameStore } from '@/app/store/gameStore';
 import { doc, updateDoc } from 'firebase/firestore';
@@ -16,16 +15,14 @@ export default function ShowClues() {
           state: 'vote'
         });
       }
-    }, 15000); // 15 segundos para leer las pistas
+    }, 15000);
 
     return () => clearTimeout(timer);
   }, [room, currentPlayer]);
 
   if (!room) return null;
 
-  const shuffledClues = [...room.players]
-    .sort(() => Math.random() - 0.5)
-    .filter(p => p.clue);
+  const playersWithClues = room.players.filter(p => p.clue && p.clue.length > 0);
 
   return (
     <div className="min-h-screen flex items-center justify-center p-4">
@@ -39,7 +36,7 @@ export default function ShowClues() {
           </div>
 
           <div className="grid gap-4 md:grid-cols-2">
-            {shuffledClues.map((player, index) => (
+            {playersWithClues.map((player) => (
               <div
                 key={player.id}
                 className="bg-white/20 rounded-xl p-6 hover:bg-white/30 transition-all"
@@ -49,8 +46,8 @@ export default function ShowClues() {
                     <MessageCircle size={20} className="text-white" />
                   </div>
                   <div className="flex-1">
-                    <div className="text-gray-400 text-sm mb-2">Pista #{index + 1}</div>
-                    <p className="text-white text-lg font-medium">{player.clue}</p>
+                    <div className="text-blue-300 font-bold text-lg mb-1">{player.name}</div>
+                    <p className="text-white text-lg">{player.clue}</p>
                   </div>
                 </div>
               </div>
