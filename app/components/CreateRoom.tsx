@@ -37,7 +37,7 @@ export default function CreateRoom({ onBack }: { onBack: () => void }) {
           roundCount: 3,
           clueTime: 20
         },
-        state: 'lobby',
+        state: 'lobby' as 'lobby',
         currentRound: 0,
         createdAt: Date.now()
       };
