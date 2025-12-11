@@ -48,17 +48,3 @@ export default function FinalResults() {
     </div>
   );
 }
-
-
-  const handlePlayAgain = async () => {
-    if (!room?.id) return;
-    // Restart game logic
-    await updateDoc(doc(db, 'rooms', room.id), {
-      gameState: 'lobby',
-      players: {},
-      votes: {},
-      currentWord: '',
-      currentRound: 0
-    });
-  };git add app/components/FinalResults.tsx && git commit -m "Add missing handlePlayAgain function" && git push origin main
-  
