@@ -1,4 +1,4 @@
-export type GameState = 'lobby' | 'round' | 'clues' | 'vote' | 'results' | 'finish';
+export type GameState = 'lobby' | 'round' | 'clues' | 'vote' | 'results' | | 'votingResults' 'finish';
 
 export interface Player {
   id: string;
